@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stdsub.css">
+    <script src="https://kit.fontawesome.com/a3ffbb974d.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <title>GAZE - Saloni Doshi Collection</title>
+</head>
+<body style="background-image: url('images/std5.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+    <div>
+        <div style="padding: 0 24px 0 24px;">
+        <div style="padding: 24px 24px 24px 24px; background-color: #ffffff;">
+            <header>
+                <p>Studio 5</p>
+                <a href="std5.html"><div style="display: flex; align-content: center; height: 23.2px;"><img src="exit.svg" style="max-width: 15px;" alt="exit"></div></a>
+            </header>
+            
+            <img id="artimg" src="images/std5.jpg">
+            <h2 id="artname">GAZE</h2>
+            <p></p>
+            <p></p>
+            <audio id="song">
+                <source src="audios/std5.mp3" type="audio/mpeg">
+            </audio>
+            <input type="range" value="30" id="progress">
+            <div class="controlic">
+                <a href="#"><div><i class="fa-solid fa-backward-step"></i></div></a>
+                <div id="playicon" onClick="playPause()"><i class="fa-solid fa-play" id="ctrlIcon"></i></div>
+                <a href="std5a.html"><div><i class="fa-solid fa-forward-step"></i></div></a>
+            </div>
+            <div style="padding-top: 48px">
+                <p id="cnote">
+                    Studio 5 focuses on our gaze. It takes us face to face with the moment in time. It introduces a dialogue where the viewer stands in front of a photograph and then wonders, what happens when the photograph looks back at us? What sort of feelings, what sort of emotions, what sort of aspirations did the photographer have when they clicked that moment? And what happens when the figures in the photograph look back at you? Are we invading a moment of privacy? Are we belonging to this space? are we welcome here? In all of these photographs we see and we introspect on these questions whether it is Nikhil Chopra's very stern eyes looking back into the mirror, whether it is Vivaan Sundaram's montages of Amrita Shergill, whether it is the tribal folklore and people in Ghori Gill's photographs or whether it is Jyoti Bhatt's documentation of our tribal surroundings. These are all real person that are looking back at us asking and demanding, of our right to look.            
+                </p>
+            </div>
+            <div style="margin-top: 48px; text-align: center;">
+                <img src="logo.png" alt="Saloni Doshi Collection" style="height: 35px">
+            </div>
+        </div>
+        </div>
+        
+    </div>
+    <script>
+        let progress = document.getElementById("progress");
+        let song = document.getElementById("song");
+        let ctrlIcon = document.getElementById("ctrlIcon");
+
+        song.onloadedmetadata = function(){
+            progress.max = song.duration;
+            progress.value = song.currentTime;
+
+        }
+
+        function playPause() {
+            if(ctrlIcon.classList.contains("fa-pause")) {
+                song.pause();
+                ctrlIcon.classList.remove("fa-pause");
+                ctrlIcon.classList.add("fa-play");
+            }
+            else{
+                song.play();
+                ctrlIcon.classList.add("fa-pause");
+                ctrlIcon.classList.remove("fa-play");
+            }
+        }
+
+        if(song.play()) {
+            setInterval(()=>{
+                progress.value = song.currentTime;
+            },500);
+        }
+
+        progress.onchange = function(){
+            song.play();
+            song.currentTime = progress.value;
+            ctrlIcon.classList.add("fa-pause");
+            ctrlIcon.classList.remove("fa-play");
+        }
+
+    </script>
+</body>
+</html>

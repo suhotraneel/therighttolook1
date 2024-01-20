@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stdsub.css">
+    <script src="https://kit.fontawesome.com/a3ffbb974d.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <title>PERFORMANCE - Saloni Doshi Collection</title>
+</head>
+<body style="background-image: url('images/std2.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+    <div>
+        <div style="padding: 0 24px 0 24px;">
+        <div style="padding: 24px 24px 24px 24px; background-color: #ffffff;">
+            <header>
+                <p>Studio 2</p>
+                <a href="std2.html"><div style="display: flex; align-content: center; height: 23.2px;"><img src="exit.svg" style="max-width: 15px;" alt="exit"></div></a>
+            </header>
+            
+            <img id="artimg" src="images/std2.jpg">
+            <h2 id="artname">PERFORMANCE</h2>
+            <p></p>
+            <p></p>
+            <audio id="song">
+                <source src="audios/std2.mp3" type="audio/mpeg">
+            </audio>
+            <input type="range" value="30" id="progress">
+            <div class="controlic">
+                <a href="#"><div><i class="fa-solid fa-backward-step"></i></div></a>
+                <div id="playicon" onClick="playPause()"><i class="fa-solid fa-play" id="ctrlIcon"></i></div>
+                <a href="std2a.html"><div><i class="fa-solid fa-forward-step"></i></div></a>
+            </div>
+            <div style="padding-top: 48px">
+                <p id="cnote">
+                    To introduce these photographs as a site of an experience.A photograph is no longer a document of a life simply lived, but it becomes a moment, a pleasure that is enjoyed. It is a performance where there is tension, where there is excitement, where there is love and where there is grief. And in all of these works we see the artist. We see the photographer capturing those particular moments. We see Surekha's, heavily garlanded body draped in jasmine flowers as the site of tension, which not only celebrates womanhood but also underlines its very tensions. It's very aspirations. We see Madhu Das's practise, where he's improvising a relationship with his immediate surroundings. He's weaving himself in this myth of time that we very well see, particularly in Vivek with huge photo which interjects the West with the East, as well as with Nicol Chopra's performance from the yoga Chitra Kar series, where he tries to imagine what is fact and what is fiction.
+                </p>
+            </div>
+            <div style="margin-top: 48px; text-align: center;">
+                <img src="logo.png" alt="Saloni Doshi Collection" style="height: 35px">
+            </div>
+        </div>
+        </div>
+        
+    </div>
+    <script>
+        let progress = document.getElementById("progress");
+        let song = document.getElementById("song");
+        let ctrlIcon = document.getElementById("ctrlIcon");
+
+        song.onloadedmetadata = function(){
+            progress.max = song.duration;
+            progress.value = song.currentTime;
+
+        }
+
+        function playPause() {
+            if(ctrlIcon.classList.contains("fa-pause")) {
+                song.pause();
+                ctrlIcon.classList.remove("fa-pause");
+                ctrlIcon.classList.add("fa-play");
+            }
+            else{
+                song.play();
+                ctrlIcon.classList.add("fa-pause");
+                ctrlIcon.classList.remove("fa-play");
+            }
+        }
+
+        if(song.play()) {
+            setInterval(()=>{
+                progress.value = song.currentTime;
+            },500);
+        }
+
+        progress.onchange = function(){
+            song.play();
+            song.currentTime = progress.value;
+            ctrlIcon.classList.add("fa-pause");
+            ctrlIcon.classList.remove("fa-play");
+        }
+
+    </script>
+</body>
+</html>

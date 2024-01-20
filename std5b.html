@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stdsub.css">
+    <script src="https://kit.fontawesome.com/a3ffbb974d.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <title>GAZE - Saloni Doshi Collection</title>
+</head>
+<body style="background-image: url('images/std5b.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+    <div>
+        <div style="padding: 0 24px 0 24px;">
+        <div style="padding: 24px 24px 24px 24px; background-color: #ffffff;">
+            <header>
+                <p>GAZE</p>
+                <a href="std2.html"><div style="display: flex; align-content: center; height: 23.2px;"><img src="exit.svg" style="max-width: 15px;" alt="exit"></div></a>
+            </header>
+            
+            <img id="artimg" src="images/std5b.jpg">
+            <h2 id="artname">Meena Woman, 2007</h2>
+            <p>Jyoti Bhatt</p>
+            <p>13 x 19 in</p>
+            <audio id="song">
+                <source src="audios/std5b.mp3" type="audio/mpeg">
+            </audio>
+            <input type="range" value="30" id="progress">
+            <div class="controlic">
+                <a href="std5a.html"><div><i class="fa-solid fa-backward-step"></i></div></a>
+                <div id="playicon" onClick="playPause()"><i class="fa-solid fa-play" id="ctrlIcon"></i></div>
+                <a href="std5c.html"><div><i class="fa-solid fa-forward-step"></i></div></a>
+            </div>
+            <!-- <div style="padding-top: 48px">
+                <p id="cnote">
+                    A photograph is a mediated magic; it does not simply lend us a vision into a moment in time that has been lost to history, but also broadens our perspective about how an event could be. Photography is inspirational, as well as aspirational, and the story of Indian photography shall remain incomplete without such ambitions, such yearnings that introduce to the world our desires, our objectives, our identities – of who we are, and perhaps, who we want to be.
+                </p>
+            </div> -->
+            <div style="margin-top: 48px; text-align: center;">
+                <img src="logo.png" alt="Saloni Doshi Collection" style="height: 35px">
+            </div>
+        </div>
+        </div>
+        
+    </div>
+    <script>
+        let progress = document.getElementById("progress");
+        let song = document.getElementById("song");
+        let ctrlIcon = document.getElementById("ctrlIcon");
+
+        song.onloadedmetadata = function(){
+            progress.max = song.duration;
+            progress.value = song.currentTime;
+
+        }
+
+        function playPause() {
+            if(ctrlIcon.classList.contains("fa-pause")) {
+                song.pause();
+                ctrlIcon.classList.remove("fa-pause");
+                ctrlIcon.classList.add("fa-play");
+            }
+            else{
+                song.play();
+                ctrlIcon.classList.add("fa-pause");
+                ctrlIcon.classList.remove("fa-play");
+            }
+        }
+
+        if(song.play()) {
+            setInterval(()=>{
+                progress.value = song.currentTime;
+            },500);
+        }
+
+        progress.onchange = function(){
+            song.play();
+            song.currentTime = progress.value;
+            ctrlIcon.classList.add("fa-pause");
+            ctrlIcon.classList.remove("fa-play");
+        }
+
+    </script>
+</body>
+</html>
